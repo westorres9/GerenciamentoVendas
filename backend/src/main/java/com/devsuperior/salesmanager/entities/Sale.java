@@ -1,22 +1,34 @@
 package com.devsuperior.salesmanager.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+@Entity
+@Table(name = "tb_sale")
+public class Sale implements Serializable {
+private static final long serialVersionUID = 1L;
 
-public class Sale {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
+    private Integer deals;
     private Integer visited;
     private Double amount;
+
+    @ManyToOne
+    @JoinColumn(name = "userSellerId")
+    private User seller;
 
     public Sale() {
     }
 
-    public Sale(Long id, LocalDate date, Integer visited, Double amount) {
+    public Sale(Long id, LocalDate date, Integer visited,Integer deals, Double amount) {
         this.id = id;
         this.date = date;
         this.visited = visited;
+        this.deals = deals;
         this.amount = amount;
     }
 
@@ -44,12 +56,28 @@ public class Sale {
         this.visited = visited;
     }
 
+    public Integer getDeals() {
+        return deals;
+    }
+
+    public void setDeals(Integer deals) {
+        this.deals = deals;
+    }
+
     public Double getAmount() {
         return amount;
     }
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
     @Override
