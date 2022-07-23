@@ -10,7 +10,7 @@ public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String username;
+    private String name;
     private String email;
 
     private Set<RoleDTO> roles = new HashSet<>();
@@ -18,15 +18,15 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String username, String email) {
+    public UserDTO(Long id, String name, String email) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.email = email;
     }
 
     public UserDTO(User entity) {
         this.id = entity.getId();
-        this.username = entity.getUsername();
+        this.name = entity.getName();
         this.email = entity.getEmail();
         entity.getRoles().forEach(role -> new RoleDTO(role));
     }
@@ -39,12 +39,12 @@ public class UserDTO implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

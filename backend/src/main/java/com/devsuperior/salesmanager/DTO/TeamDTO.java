@@ -1,8 +1,11 @@
 package com.devsuperior.salesmanager.DTO;
 
 import com.devsuperior.salesmanager.entities.Team;
+import com.devsuperior.salesmanager.entities.User;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 public class TeamDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -49,4 +52,5 @@ public class TeamDTO implements Serializable {
     public void setManagerId(Long managerId) {
         this.managerId = managerId;
     }
+
 }

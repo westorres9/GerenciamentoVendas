@@ -1,8 +1,6 @@
 package com.devsuperior.salesmanager.resources;
 
-import com.devsuperior.salesmanager.DTO.SaleDTO;
 import com.devsuperior.salesmanager.DTO.TeamDTO;
-import com.devsuperior.salesmanager.services.SaleService;
 import com.devsuperior.salesmanager.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
