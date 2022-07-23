@@ -2,6 +2,7 @@ INSERT INTO tb_user (username, email, password) VALUES ('Ana Blue', 'ana@gmail.c
 INSERT INTO tb_user (username,  email, password) VALUES ('Bob Brown', 'bob@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 INSERT INTO tb_user (username,  email, password) VALUES ('Maria Green', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 INSERT INTO tb_user (username,  email, password) VALUES ('Billy Grey', 'billy@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (username,  email, password) VALUES ('Charlie Purple', 'charlie@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_SELLER');
@@ -12,6 +13,13 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (4, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (5, 2);
+
+INSERT INTO tb_team(name, manager_id) VALUES ('Bradesco', 2);
+INSERT INTO tb_team(name, manager_id) VALUES ('PicPay', 5);
+
+INSERT INTO tb_team_seller(team_id, seller_id) VALUES (1,1);
+INSERT INTO tb_team_seller(team_id, seller_id) VALUES (2,4);
 
 INSERT INTO tb_sale(user_seller_id,visited,deals,amount,date) VALUES (1,121,67,18196.0,'2022-06-16');
 INSERT INTO tb_sale(user_seller_id,visited,deals,amount,date) VALUES (1,26,14,4255.0,'2022-06-14');
