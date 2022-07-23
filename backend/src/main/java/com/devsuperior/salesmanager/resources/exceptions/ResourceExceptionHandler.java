@@ -1,7 +1,9 @@
 package com.devsuperior.salesmanager.resources.exceptions;
 
 import com.devsuperior.salesmanager.services.exceptions.DatabaseException;
+import com.devsuperior.salesmanager.services.exceptions.ForbiddenException;
 import com.devsuperior.salesmanager.services.exceptions.ResourceNotFoundException;
+import com.devsuperior.salesmanager.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -56,4 +58,15 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<OauthCustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
+        OauthCustomError err = new OauthCustomError("Forbidden", e.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<OauthCustomError> unauthorized(UnauthorizedException e, HttpServletRequest request) {
+        OauthCustomError err = new OauthCustomError("Forbidden", e.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
+    }
 }
