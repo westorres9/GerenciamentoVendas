@@ -1,4 +1,4 @@
-package com.devsuperior.salesmanager;
+package com.devsuperior.salesmanager.DTO;
 
 import com.devsuperior.salesmanager.entities.Sale;
 
