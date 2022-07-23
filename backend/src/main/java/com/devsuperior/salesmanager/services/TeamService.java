@@ -1,8 +1,10 @@
 package com.devsuperior.salesmanager.services;
 
 import com.devsuperior.salesmanager.DTO.SaleDTO;
+import com.devsuperior.salesmanager.DTO.TeamDTO;
 import com.devsuperior.salesmanager.entities.Sale;
-import com.devsuperior.salesmanager.repositories.SaleRepository;
+import com.devsuperior.salesmanager.entities.Team;
+import com.devsuperior.salesmanager.repositories.TeamRepository;
 import com.devsuperior.salesmanager.repositories.UserRepository;
 import com.devsuperior.salesmanager.services.exceptions.DatabaseException;
 import com.devsuperior.salesmanager.services.exceptions.ResourceNotFoundException;
@@ -15,54 +17,46 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.lang.module.ResolutionException;
 import java.util.Optional;
 
 @Service
-public class SaleService {
+public class TeamService {
 
     @Autowired
-    private SaleRepository repository;
-
+    private TeamRepository repository;
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional(readOnly = true)
-    public Page<SaleDTO> findAllPaged(Pageable pageable) {
-        Page<Sale> page = repository.findAll(pageable);
-        return page.map(x -> new SaleDTO(x));
+    @Transactional
+    public Page<TeamDTO> findAllPaged(Pageable pageable) {
+        Page<Team> page = repository.findAll(pageable);
+        return page.map(x -> new TeamDTO(x));
     }
 
     @Transactional(readOnly = true)
-    public SaleDTO findById(Long id) {
-        Optional<Sale> obj = repository.findById(id);
-        Sale entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity Not Found"));
-        return new SaleDTO(entity);
+    public TeamDTO findById(Long id) {
+        Optional<Team> obj = repository.findById(id);
+        Team entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity Not Found"));
+        return new TeamDTO(entity);
     }
 
     @Transactional
-    public SaleDTO insert(SaleDTO dto) {
-        Sale entity = new Sale();
-        entity.setDate(dto.getDate());
-        entity.setVisited(dto.getVisited());
-        entity.setDeals(dto.getDeals());
-        entity.setAmount(dto.getAmount());
-        entity.setSeller(userRepository.getOne(dto.getSellerId()));
+    public TeamDTO insert(TeamDTO dto) {
+        Team entity = new Team();
+        entity.setName(dto.getName());
+        entity.setManager(userRepository.getOne(dto.getManagerId()));
         entity = repository.save(entity);
-        return new SaleDTO(entity);
+        return new TeamDTO(entity);
     }
 
     @Transactional
-    public SaleDTO update(Long id, SaleDTO dto) {
+    public TeamDTO update(Long id, TeamDTO dto) {
         try {
-            Sale entity = repository.getOne(id);
-            entity.setDate(dto.getDate());
-            entity.setVisited(dto.getVisited());
-            entity.setDeals(dto.getDeals());
-            entity.setAmount(dto.getAmount());
-            entity.setSeller(userRepository.getOne(dto.getSellerId()));
+            Team entity = repository.getOne(id);
+            entity.setName(dto.getName());
+            entity.setManager(userRepository.getOne(dto.getManagerId()));
             entity = repository.save(entity);
-            return new SaleDTO(entity);
+            return new TeamDTO(entity);
         }
         catch (EntityNotFoundException e ) {
             throw new ResourceNotFoundException("Entity not found");
@@ -80,6 +74,4 @@ public class SaleService {
             throw new DatabaseException("Integrity violation");
         }
     }
-
-
 }
