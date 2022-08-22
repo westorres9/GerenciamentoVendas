@@ -17,6 +17,9 @@ public class Team implements Serializable {
     @OneToOne
     @JoinColumn(name = "manager_id")
     private User manager;
+    
+    @OneToMany(mappedBy = "team")
+    private List<Sale> sales = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "tb_team_seller",
@@ -61,7 +64,11 @@ public class Team implements Serializable {
         return sellers;
     }
 
-    @Override
+    public List<Sale> getSales() {
+		return sales;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

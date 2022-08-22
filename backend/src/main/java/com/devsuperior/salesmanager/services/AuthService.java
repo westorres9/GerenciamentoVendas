@@ -22,7 +22,7 @@ public class AuthService {
             return userRepository.findByEmail(username);
         }
         catch (Exception e) {
-            throw new UnauthorizedException("Unauthorized user");
+            throw new UnauthorizedException("Unauthorized");
         }
     }
 
@@ -30,28 +30,28 @@ public class AuthService {
     public void validateSelf(Long userId) {
         User user = authenticated();
         if(!user.getId().equals(userId)) {
-            throw new ForbiddenException("Access denied");
+            throw new ForbiddenException("Unauthorized");
         }
     }
 
     public void validateAdmin(Long userId) {
         User user = authenticated();
         if (!user.hasRole("ROLE_ADMIN")) {
-            throw new ForbiddenException("access denied");
+            throw new ForbiddenException("Unauthorized");
         }
     }
 
     public void validateSelfOrAdmin(Long userId) {
         User user = authenticated();
         if (!user.getId().equals(userId) &&(!user.hasRole("ROLE_ADMIN"))) {
-            throw new ForbiddenException("access denied");
+            throw new ForbiddenException("Unauthorized");
         }
     }
 
     public void validateManagerOrAdmin(Long userId) {
         User user = authenticated();
         if (!user.hasRole("ROLE_MANAGER") || (!user.hasRole("ROLE_ADMIN"))) {
-            throw new ForbiddenException("access denied");
+            throw new ForbiddenException("Unauthorized");
         }
     }
 }

@@ -20,16 +20,23 @@ private static final long serialVersionUID = 1L;
     @ManyToOne
     @JoinColumn(name = "userSellerId")
     private User seller;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "teamId")
+    private Team team;
+    
+    
     public Sale() {
     }
 
-    public Sale(Long id, LocalDate date, Integer visited,Integer deals, Double amount) {
+    public Sale(Long id, LocalDate date, Integer visited,Integer deals, Double amount, User seller, Team team) {
         this.id = id;
         this.date = date;
         this.visited = visited;
         this.deals = deals;
         this.amount = amount;
+        this.seller = seller;
+        this.team = team;
     }
 
     public Long getId() {
@@ -79,8 +86,19 @@ private static final long serialVersionUID = 1L;
     public void setSeller(User seller) {
         this.seller = seller;
     }
+    
+    
 
-    @Override
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
