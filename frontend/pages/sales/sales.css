@@ -1,0 +1,15 @@
+.sales-container h2 {
+    margin: 20px 30px;
+}
+
+.sales-card {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.btn {
+    margin-right: 30px;
+}
+

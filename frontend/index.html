@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="vendasApp">
+
+<head>
+  <!-- SCROLLS -->
+
+
+  <!-- Custom styles for this template -->
+
+
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="pages/sales/sales.css">
+  <link rel="stylesheet" href="pages/teams/teams.css">
+  <link rel="stylesheet" href="pages/users/user.css">
+  <link rel="stylesheet" href="pages/login/login.css">
+</head>
+
+<!-- define angular controller -->
+
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-expand-md bg-primary main-nav navbar-dark">
+    <div class="container-fluid">
+      <a class="nav-logo-text" href="#home">
+        <h4>DSvendas</h4>
+      </a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dsvendas-navbar" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="dsvendas-navbar">
+        <ul class="navbar-nav offset-md-2 main-menu">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#users">Users</a></li>
+          <li><a href="#teams">Teams</a></li>
+          <li><a href="#sales">Sales</a></li>
+          <li><a href="#login">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="main">
+    <div ng-view></div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+  <script src="script.js"></script>
+  <script src="js/authService.js"></script>
+  <script src="js/route.js"></script>
+  <script src="js/loginController.js"></script>
+  <script src="js/userController.js"></script>
+  <script src="js/teamController.js"></script>
+  <script src="js/allSalesController.js"></script>
+  <script src="js/isAuthenticated.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/bootstrap/js/src/collapse.js"></script>
+</body>
+
+</html>
