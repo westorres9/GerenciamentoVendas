@@ -1,18 +1,10 @@
 vendasApp.controller('allSalesController', (function ($scope, $http, AuthService) {
 	var url = "http://localhost:8080/sales";
-	const token = AuthService.getToken();
 
-	
-	$http.get(url,
-	{
-		headers: {
-			'Authorization': 'Bearer ' +  token.access_token
-		}
-	})
+	const token = AuthService.getToken();
+	$http.get(url)
 		.then(function (response) {
 			$scope.sales = response.data;
-			console.log(response)
-			console.log(AuthService.getToken())
 		}).catch(function (response) {
 			$scope.response = 'ERROR: ' + response.status;
 		});
@@ -21,7 +13,6 @@ vendasApp.controller('allSalesController', (function ($scope, $http, AuthService
 	$scope.SelectSale = function (sale) {
 		$scope.sale = sale;
 		JSON.stringify(sale)
-		console.log(sale);
 	}
 
 	$scope.InsertSale = function (url, sale) {
