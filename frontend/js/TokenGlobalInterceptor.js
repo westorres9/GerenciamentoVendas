@@ -1,9 +1,9 @@
 vendasApp.factory('tokenGlobalInterceptor', Interceptor);
     Interceptor.inject = ['$q'];
-    function Interceptor($q) {
+    function Interceptor($q, AuthService) {
     return {
         request: function(config) {
-            const token = AuthService().getToken();
+            const token = AuthService.getToken();
             if(token === null ){
                 console.log(token);
                 console.log(config);
