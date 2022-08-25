@@ -1,7 +1,6 @@
 vendasApp.factory('AuthService', AuthService);
 function AuthService () {
-	return {
-	 
+	return {	 
 	  setToken: function (token) {
 		window.localStorage.setItem('access_token', angular.toJson(token));
 		console.log('authService.setToken', token)

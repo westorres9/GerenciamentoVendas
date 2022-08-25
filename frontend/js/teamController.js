@@ -1,9 +1,5 @@
-vendasApp.controller('teamController', (function ($scope, $http, AuthService) {
+vendasApp.controller('teamController', (function ($scope, $http) {
 	var url = "http://localhost:8080/teams";
-
-	const token = AuthService.getToken();
-
-	
 	$http.get(url)
 		.then(function (response) {
 			$scope.teams = response.data;

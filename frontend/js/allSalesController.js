@@ -1,7 +1,5 @@
-vendasApp.controller('allSalesController', (function ($scope, $http, AuthService) {
+vendasApp.controller('allSalesController', (function ($scope, $http) {
 	var url = "http://localhost:8080/sales";
-
-	const token = AuthService.getToken();
 	$http.get(url)
 		.then(function (response) {
 			$scope.sales = response.data;
@@ -16,12 +14,7 @@ vendasApp.controller('allSalesController', (function ($scope, $http, AuthService
 	}
 
 	$scope.InsertSale = function (url, sale) {
-		$http.post(url,
-			{
-				headers: {
-					'Authorization': 'Bearer ' +  token.access_token
-				}
-			}, JSON.stringify(sale))
+		$http.post(url, JSON.stringify(sale))
 			.then(function (response) {
 				
 				$scope.sales = response;
@@ -33,14 +26,9 @@ vendasApp.controller('allSalesController', (function ($scope, $http, AuthService
 			});
 	}
 
-	$scope.UpdateSale = function (sale,AuthService) {
-		const token = AuthService.getToken();
-		$http.put(url,
-			{
-				headers: {
-					'Authorization': 'Bearer ' +  token.access_token
-				}
-			}, { sale })
+	$scope.UpdateSale = function (sale) {
+
+		$http.put(url, { sale })
 			.then(function (response) {
 				$scope.sales = response;
 				delete $scope.sale;
@@ -51,15 +39,10 @@ vendasApp.controller('allSalesController', (function ($scope, $http, AuthService
 			});
 	}
 
-	$scope.DeleteSale = function (sale,AuthService) {
-		const token = AuthService.getToken();
+	$scope.DeleteSale = function (sale) {
 
-		$http.delete(url,
-			{
-				headers: {
-					'Authorization': 'Bearer ' +  token.access_token
-				}
-			}, { sale })
+
+		$http.delete(url, { sale })
 			.then(function (response) {
 				$scope.sales = response;
 				delete $scope.sale;
