@@ -1,17 +1,25 @@
 vendasApp.controller('allSalesController', (function ($scope, $http) {
-	var url = "http://localhost:8080/sales";
-	$http.get(url)
-		.then(function (response) {
-			$scope.sales = response.data;
-		}).catch(function (response) {
-			$scope.response = 'ERROR: ' + response.status;
-		});
+	var vm = this;
+    vm.title = 'AllSalesController';
 
-	$scope.sale = $scope.sales;
-	$scope.SelectSale = function (sale) {
-		$scope.sale = sale;
-		JSON.stringify(sale)
-	}
+    var url = "http://localhost:8080/sales";
+	console.log('allSalescontroller')
+
+    allSales = function () {
+        $http.get(url)
+            .then(function (response) {
+                vm.sales = response.data;
+				console.log('allSalescontroller2')
+            }).catch(function (response) {
+                vm.response = 'ERROR: ' + response.status;
+            });
+
+        vm.sale = vm.sales;
+        vm.SelectSale = function (sale) {
+            vm.sale = sale;
+            JSON.stringify(sale)
+        }
+    }
 
 	$scope.InsertSale = function (url, sale) {
 		$http.post(url, JSON.stringify(sale))

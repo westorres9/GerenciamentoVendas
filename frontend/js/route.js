@@ -21,7 +21,8 @@ vendasApp.config(function ($routeProvider) {
 		// route for the contact page
 		.when('/sales', {
 			templateUrl: 'pages/sales/sales.html',
-			controller: 'allSalesController'
+			controller: 'allSalesController',
+			controllerAs: 'AllSalesController'
 		})
 
 		.when("/sales/:id", {
@@ -32,5 +33,10 @@ vendasApp.config(function ($routeProvider) {
 		.when('/users', {
 			templateUrl: 'pages/users/user.html',
 			controller: 'userController'
+		})
+
+		.when('/teste', {
+			templateUrl: 'pages/teste/teste.html',
+			controller: 'Customers',
 		});
 });
