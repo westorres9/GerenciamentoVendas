@@ -4,6 +4,7 @@
         <div class="sales-content-container">
             <table class="dsvendas-sales-table table">
                 <thead>
+                    {{AllSalesControllerVm.title}}
                     <tr>
                         <th>
                             ID
@@ -28,7 +29,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="sale in vm.sales">
+                <tbody ng-repeat="sale in AllSalesControllerVm.sales()">
                     <tr>
                         <td>
                             {{sale.id}}
@@ -52,10 +53,10 @@
                             {{sale.sellerName}}
                         </td>
                         <td>
-                            <button class="btn btn-warning" ng-click="SelectSale(sale)" data-toogle="tooltip"
+                            <button class="btn btn-warning" ng-click="vm.SelectSale(sale)" data-toogle="tooltip"
                                 title="Clique para Selecionar Venda">Selecionar</button>
                             <button class="btn btn-danger"
-                                onclick="alert('Tem certeza que deseja apagar')" ng-click="DeleteUser(user)">Apagar</button>
+                                onclick="alert('Tem certeza que deseja apagar')" ng-click="vm.DeleteSale(sale)">Apagar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -69,12 +70,12 @@
                 <td><input type="text" required ng-model="sale.amount" placeholder="Valor da venda"></td>
                 <td><input type="text" required ng-model="sale.sellerId" placeholder="Id Vendedor"></td>
                 <td>
-                    <button href="#" class="btn btn-primary" ng-click="InsertSale(sale)"
+                    <button href="#" class="btn btn-primary" ng-click="vm.InsertSale(sale)"
                         ng-disable="!sale.id || !sale.date " data-toogle="tooltip"
                         title="Clique para Editar Venda">Novo</button>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-success" ng-click="UpdateSale(sale)"
+                    <a href="#" class="btn btn-success" ng-click="vm.UpdateSale(sale)"
                         ng-disable="!sale.id || !sale.date " data-toogle="tooltip"
                         title="Clique para Editar Venda">Alterar</a>
                 </td>

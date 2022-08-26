@@ -1,8 +1,8 @@
 <div class="teste-container">
     <h2>Teste</h2>
-    <div class="teste-card" ng-controller="Customers as customersVm"></div>
-    <ul ng-repeat="c in customers">
-      <li>{{c}}</li>
+    <div class="teste-card"></div>
+    <ul  ng-repeat="c in customersVm.customers">
+      <li>{{c.name}}</li>
     </ul>
     </article>
 </div>

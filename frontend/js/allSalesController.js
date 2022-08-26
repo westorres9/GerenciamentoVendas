@@ -1,64 +1,74 @@
-vendasApp.controller('allSalesController', (function ($scope, $http) {
+vendasApp.controller('AllSalesController', (function ($scope, $http) {
 	var vm = this;
     vm.title = 'AllSalesController';
+	vm.GetAllSales = GetAllSales;
+	vm.SelectSale = SelectSale;
+	vm.InsertSale = InsertSale;
+	vm.UpdateSale = UpdateSale;
+	vm.DeleteSale = DeleteSale;
+	 
+
+	
 
     var url = "http://localhost:8080/sales";
 	console.log('allSalescontroller')
 
-    allSales = function () {
+    function GetAllSales() {
         $http.get(url)
             .then(function (response) {
-                vm.sales = response.data;
-				console.log('allSalescontroller2')
+                vm.sales = response.data.content;
+				console.log(sales)
             }).catch(function (response) {
-                vm.response = 'ERROR: ' + response.status;
+                response = 'ERROR: ' + response.status;
             });
-
-        vm.sale = vm.sales;
-        vm.SelectSale = function (sale) {
-            vm.sale = sale;
-            JSON.stringify(sale)
-        }
+		SelectSale(sale);
     }
 
-	$scope.InsertSale = function (url, sale) {
+	
+
+	function InsertSale (url, sale) {
 		$http.post(url, JSON.stringify(sale))
 			.then(function (response) {
 				
-				$scope.sales = response;
-				delete $scope.sale;
-				$scope.GetAllSales();
+				vm.sales = response;
+				delete vm.sale;
+				vm.GetAllSales();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.UpdateSale = function (sale) {
+	function UpdateSale (sale) {
 
 		$http.put(url, { sale })
 			.then(function (response) {
-				$scope.sales = response;
-				delete $scope.sale;
-				$scope.GetAllSales();
+				vm.sales = response;
+				delete vm.sale;
+				vm.GetAllSales();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.DeleteSale = function (sale) {
+	function DeleteSale (sale) {
 
 
-		$http.delete(url, { sale })
+		vm.delete(url, { sale })
 			.then(function (response) {
-				$scope.sales = response;
-				delete $scope.sale;
-				$scope.GetAllSales();
+				vm.sales = response;
+				delete vm.sale;
+				vm.GetAllSales();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
+	}
+
+	function SelectSale (sale) {
+		sale = sale;
+		JSON.stringify(sale)
 	}
 })
 
@@ -68,6 +78,6 @@ vendasApp.controller('salesByIdController', (function ($routeParams) {
 	$routeParams.id;
 }));
 
-vendasApp.controller('ApagarController', (function ($scope) {
+vendasApp.controller('ApagarController', (function (sale) {
 	alert("Tem certeza que deseja apagar");
 }))
