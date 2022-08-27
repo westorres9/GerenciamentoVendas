@@ -4,7 +4,7 @@
         <div class="sales-content-container">
             <table class="dsvendas-sales-table table">
                 <thead>
-                    {{AllSalesControllerVm.title}}
+                    {{Vm.title}}
                     <tr>
                         <th>
                             ID
@@ -29,7 +29,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="sale in AllSalesControllerVm.sales()">
+                <tbody ng-repeat="sale in Vm.sales">
                     <tr>
                         <td>
                             {{sale.id}}

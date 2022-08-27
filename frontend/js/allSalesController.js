@@ -1,4 +1,4 @@
-vendasApp.controller('AllSalesController', (function ($scope, $http) {
+vendasApp.controller('AllSalesController', (function ($http) {
 	var vm = this;
     vm.title = 'AllSalesController';
 	vm.GetAllSales = GetAllSales;
@@ -6,25 +6,23 @@ vendasApp.controller('AllSalesController', (function ($scope, $http) {
 	vm.InsertSale = InsertSale;
 	vm.UpdateSale = UpdateSale;
 	vm.DeleteSale = DeleteSale;
-	 
-
-	
 
     var url = "http://localhost:8080/sales";
-	console.log('allSalescontroller')
+	console.log('allSalescontroller', vm)
 
     function GetAllSales() {
+		console.log("1")//
         $http.get(url)
             .then(function (response) {
+				console.log("3")
                 vm.sales = response.data.content;
 				console.log(sales)
             }).catch(function (response) {
                 response = 'ERROR: ' + response.status;
             });
-		SelectSale(sale);
+			console.log("2")
+		SelectSale();
     }
-
-	
 
 	function InsertSale (url, sale) {
 		$http.post(url, JSON.stringify(sale))
@@ -53,8 +51,6 @@ vendasApp.controller('AllSalesController', (function ($scope, $http) {
 	}
 
 	function DeleteSale (sale) {
-
-
 		vm.delete(url, { sale })
 			.then(function (response) {
 				vm.sales = response;
@@ -67,12 +63,11 @@ vendasApp.controller('AllSalesController', (function ($scope, $http) {
 	}
 
 	function SelectSale (sale) {
-		sale = sale;
+		var sale = sale;
 		JSON.stringify(sale)
 	}
-})
+}));
 
-);
 
 vendasApp.controller('salesByIdController', (function ($routeParams) {
 	$routeParams.id;
