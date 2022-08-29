@@ -21,7 +21,7 @@ vendasApp.config(function ($routeProvider) {
 		// route for the contact page
 		.when('/sales', {
 			templateUrl: 'pages/sales/sales.html',
-			controller: 'GetSalesController',
+			controller: 'AllSalesController',
 			controllerAs: 'Vm'
 		})
 

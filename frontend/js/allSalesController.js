@@ -10,24 +10,31 @@ vendasApp.controller('AllSalesController', (function ($http) {
     var url = "http://localhost:8080/sales";
 	console.log('allSalescontroller', vm)
 
-    function GetAllSales() {
+	function GetAllSales() {
 		console.log("1")//
         $http.get(url)
             .then(function (response) {
 				console.log("3")
                 vm.sales = response.data.content;
-				console.log(sales)
+				console.log(vm.sales)
             }).catch(function (response) {
                 response = 'ERROR: ' + response.status;
             });
 			console.log("2")
-		SelectSale();
+			vm.SelectSale(vm.sale);
     }
+
+	const sales = new Promise(GetAllSales);
+	sales.then(result => {
+		vm.sales = result;
+		console.log(vm.sales)
+	}).catch(result => {
+		console.log("error")	
+	})
 
 	function InsertSale (url, sale) {
 		$http.post(url, JSON.stringify(sale))
 			.then(function (response) {
-				
 				vm.sales = response;
 				delete vm.sale;
 				vm.GetAllSales();
@@ -63,8 +70,12 @@ vendasApp.controller('AllSalesController', (function ($http) {
 	}
 
 	function SelectSale (sale) {
+		vm.SelectSale($routeParams = {
+				saleId : `${sale.id}`
+			})
 		var sale = sale;
 		JSON.stringify(sale)
+		console.log(sale)
 	}
 }));
 
