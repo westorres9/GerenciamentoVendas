@@ -1,50 +1,66 @@
-vendasApp.controller('teamController', (function ($scope, $http) {
+vendasApp.controller('teamController', (function ($http) {
+	var vm = this;
+	vm.title = 'teamController';
+	vm.GetAllTeams = GetAllTeams;
+
 	var url = "http://localhost:8080/teams";
-	$http.get(url)
+
+	function GetAllTeams() {
+		$http.get(url)
 		.then(function (response) {
-			$scope.teams = response.data;
-			console.log(response)
+			vm.teams = response.data.content;
+			console.log(vm.teams);
 		}).catch(function (response) {
-			$scope.response = 'ERROR: ' + response.status;
+			response = 'ERROR: ' + response.status;
 		})
-	$scope.team = $scope.team;
-	$scope.SelectTeam = function (team) {
-		$scope.team = team;
+	vm.team = vm.teams;
+	vm.SelectTeam = function (team) {
+		vm.team = team.id;
+	}
 	}
 
-	$scope.InsertTeam = function (user) {
+	const teams = new Promise(GetAllTeams);
+	teams.then(result => {
+		vm.teams = result;
+		console.log(vm.teams)
+	}).catch(result => {
+		console.log("error")	
+	})
+	
+
+	InsertTeam = function (user) {
 		$http.post("http://localhost:8080/teams", { team })
 			.then(function (response) {
-				$scope.teams = response;
-				delete $scope.team;
-				$scope.GetAllTeams();
+				vm.teams = response;
+				delete vm.team;
+				vm.GetAllTeams();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.UpdateTeam = function (team) {
+	UpdateTeam = function (team) {
 		$http.put("http://localhost:8080/team/" + team.id, { team })
 			.then(function (response) {
-				$scope.teams = response;
-				delete $scope.team;
-				$scope.GetAllTeams();
+				vm.teams = response;
+				delete vm.team;
+				vm.GetAllTeams();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.DeleteTeam = function (team) {
+	DeleteTeam = function (team) {
 		$http.delete("http://localhost:8080/teams/" + team.id, { team })
 			.then(function (response) {
-				$scope.teams = response;
-				delete $scope.team;
-				$scope.GetAllTeams();
+				vm.teams = response;
+				delete vm.team;
+				vm.GetAllTeams();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 })

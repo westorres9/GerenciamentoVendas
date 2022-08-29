@@ -15,7 +15,8 @@ vendasApp.config(function ($routeProvider) {
 		// route for the about page
 		.when('/teams', {
 			templateUrl: 'pages/teams/teams.html',
-			controller: 'teamController'
+			controller: 'teamController',
+			controllerAs: 'TCVm',
 		})
 
 		// route for the contact page

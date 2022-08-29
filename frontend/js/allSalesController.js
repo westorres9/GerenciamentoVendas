@@ -70,12 +70,11 @@ vendasApp.controller('AllSalesController', (function ($http) {
 	}
 
 	function SelectSale (sale) {
-		vm.SelectSale($routeParams = {
-				saleId : `${sale.id}`
-			})
-		var sale = sale;
-		JSON.stringify(sale)
-		console.log(sale)
+		vm.sale = sales.data(sale.id);
+		vm.Select(url + `/${sale.id}`)
+		vm.sale = sale;
+		JSON.stringify(vm.sale)
+		console.log(vm.sale)
 	}
 }));
 

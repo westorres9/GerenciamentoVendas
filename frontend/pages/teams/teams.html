@@ -19,7 +19,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="team in teams.content">
+                <tbody ng-repeat="team in TCVm.teams">
                    <tr>
                         <td>
                             {{team.id}}
@@ -34,7 +34,7 @@
                             {{team.managerName}}
                         </td>
                         <td>
-                            <button class="btn btn-warning" ng-click="SelectTeam(team)"  data-toogle="tooltip"
+                            <button class="btn btn-warning" ng-click="TCVm.SelectTeam(team)"  data-toogle="tooltip"
                             title="Clique para Selecionar Equipe">Selecionar</button>
                         </td>
                         <td>
