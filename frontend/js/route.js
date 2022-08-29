@@ -33,7 +33,8 @@ vendasApp.config(function ($routeProvider) {
 
 		.when('/users', {
 			templateUrl: 'pages/users/user.html',
-			controller: 'userController'
+			controller: 'userController',
+			controllerAs: 'UVm'
 		})
 
 		.when('/teste', {

@@ -1,51 +1,61 @@
 vendasApp.controller('userController', (function ($scope, $http) {
-	var url = "http://localhost:8080/users";
-	$http.get(url)
-		.then(function (response) {
-			$scope.users = response.data;
-			console.log(response)
-		}).catch(function (response) {
-			$scope.response = 'ERROR: ' + response.status;
-		})
+	var vm = this;
+	vm.title = 'userController';
+	vm.GetAllUsers = GetAllUsers;
 
-	$scope.user = $scope.users;
-	$scope.SelectUser = function (user) {
-		$scope.user = user;
+	var url = "http://localhost:8080/users";
+
+	function GetAllUsers() {
+		$http.get(url)
+		.then(function (response) {
+			vm.users = response.data.content;
+			console.log(vm.users);
+		}).catch(function (response) {
+			response = 'ERROR: ' + response.status;
+		})
 	}
 
-	$scope.InsertUser = function (user) {
+	const users = new Promise(GetAllUsers);
+	users.then(result => {
+		vm.users = result;
+		console.log(vm.users)
+	}).catch(result => {
+		console.log("error")	
+	})
+
+	InsertUser = function (user) {
 		$http.post(url, { user })		
 			.then(function (response) {
-				$scope.users = response;
-				delete $scope.user;
-				$scope.GetAllUsers();
+				vm.users = response;
+				delete vm.user;
+				vm.GetAllUsers();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.UpdateUser = function (user) {
+	UpdateUser = function (user) {
 		$http.put(`http://localhost:8080/users/${user.id}`, { user })
 			.then(function (response) {
-				$scope.users = response;
-				delete $scope.user;
-				$scope.GetAllUsers();
+				vm.users = response;
+				delete vm.user;
+				vm.GetAllUsers();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				response = 'ERROR: ' + response.status;
 			});
 	}
 
-	$scope.DeleteUser = function (user) {
+	DeleteUser = function (user) {
 		$http.delete(`http://localhost:8080/users/${$scope.user.id}`, { user })
 			.then(function (response) {
-				$scope.users = response;
-				delete $scope.user;
-				$scope.GetAllUsers();
+				vm.users = response;
+				delete vm.user;
+				vm.GetAllUsers();
 			})
 			.catch(function (response) {
-				$scope.response = 'ERROR: ' + response.status;
+				vm.response = 'ERROR: ' + response.status;
 			});
 	}
 })
