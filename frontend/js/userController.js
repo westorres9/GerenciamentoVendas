@@ -1,4 +1,4 @@
-vendasApp.controller('userController', (function ($scope, $http) {
+vendasApp.controller('userController', (function ($http) {
 	var vm = this;
 	vm.title = 'userController';
 	vm.GetAllUsers = GetAllUsers;

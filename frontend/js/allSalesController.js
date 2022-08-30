@@ -10,27 +10,22 @@ vendasApp.controller('AllSalesController', (function ($http) {
     var url = "http://localhost:8080/sales";
 	console.log('allSalescontroller', vm)
 
+	//fazer a requisiçao pra http://localhost:8080/sales
+	GetAllSales();
+	//se a requisiçao der sucesso, armazenar a lista de sales dentro de uma variavel accessivel na view
+
+
 	function GetAllSales() {
-		console.log("1")//
-        $http.get(url)
-            .then(function (response) {
-				console.log("3")
-                vm.sales = response.data.content;
-				console.log(vm.sales)
-            }).catch(function (response) {
-                response = 'ERROR: ' + response.status;
-            });
-			console.log("2")
-			vm.SelectSale(vm.sale);
+		$http.get(url)
+        .then(function (response) {
+			vm.sales = response.data.content;
+		}).catch(function (response) {
+			response = 'ERROR: ' + response.status;
+		});
     }
 
-	const sales = new Promise(GetAllSales);
-	sales.then(result => {
-		vm.sales = result;
-		console.log(vm.sales)
-	}).catch(result => {
-		console.log("error")	
-	})
+	
+
 
 	function InsertSale (url, sale) {
 		$http.post(url, JSON.stringify(sale))
@@ -70,7 +65,6 @@ vendasApp.controller('AllSalesController', (function ($http) {
 	}
 
 	function SelectSale (sale) {
-		vm.sale = sales.data(sale.id);
 		vm.Select(url + `/${sale.id}`)
 		vm.sale = sale;
 		JSON.stringify(vm.sale)
