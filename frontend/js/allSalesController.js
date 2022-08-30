@@ -11,7 +11,7 @@ vendasApp.controller('AllSalesController', (function ($http) {
 	console.log('allSalescontroller', vm)
 
 	//fazer a requisiçao pra http://localhost:8080/sales
-	GetAllSales();
+	
 	//se a requisiçao der sucesso, armazenar a lista de sales dentro de uma variavel accessivel na view
 
 
@@ -24,7 +24,7 @@ vendasApp.controller('AllSalesController', (function ($http) {
 		});
     }
 
-	
+	GetAllSales();
 
 
 	function InsertSale (url, sale) {
