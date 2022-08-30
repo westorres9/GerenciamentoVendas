@@ -20,9 +20,7 @@ vendasApp.factory('tokenGlobalInterceptor', Interceptor);
                 }
                 return $q.reject(error);
             }
-        }
-            return config;
-            
+        }     
         };
     
 vendasApp.config(function ($httpProvider){

@@ -7,21 +7,14 @@ vendasApp.controller('userController', (function ($http) {
 
 	function GetAllUsers() {
 		$http.get(url)
-		.then(function (response) {
-			vm.users = response.data.content;
-			console.log(vm.users);
+        .then(function (response) {
+			vm.users= response.data.content;
 		}).catch(function (response) {
 			response = 'ERROR: ' + response.status;
-		})
-	}
+		});
+    }
 
-	const users = new Promise(GetAllUsers);
-	users.then(result => {
-		vm.users = result;
-		console.log(vm.users)
-	}).catch(result => {
-		console.log("error")	
-	})
+	GetAllUsers();
 
 	InsertUser = function (user) {
 		$http.post(url, { user })		

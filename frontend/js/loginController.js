@@ -1,6 +1,7 @@
-vendasApp.controller("loginController", function ($scope, $http, $httpParamSerializerJQLike , AuthService) {
-	$scope.user = { 'grant_type': 'password' };
-	$scope.authenticate = function () {
+vendasApp.controller("loginController", function ($http, $httpParamSerializerJQLike , AuthService) {
+	var vm = this;
+	vm.user = { 'grant_type': 'password' };
+	vm.authenticate = function () {
 		var CLIENT_ID = 'dsvendas'
 		var CLIENT_SECRET = 'dsvendas123'
 
