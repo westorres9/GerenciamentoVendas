@@ -9,7 +9,8 @@ vendasApp.config(function ($routeProvider) {
 
 		.when('/login', {
 			templateUrl: 'pages/login/login.html',
-			controller: 'loginController'
+			controller: 'loginController',
+			controllerAs: 'LCVm'
 		})
 
 		// route for the about page

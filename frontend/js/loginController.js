@@ -1,10 +1,14 @@
-vendasApp.controller("loginController", function ($scope, $http, $httpParamSerializerJQLike , AuthService) {
-	$scope.user = { 'grant_type': 'password' };
-	$scope.authenticate = function () {
+vendasApp.controller("loginController", function ($http, $httpParamSerializerJQLike , AuthService) {
+	var vm = this;
+	vm.user = { 'grant_type': 'password' };
+	vm.authenticate = authenticate;
+	
+	
+	function authenticate () {
 		var CLIENT_ID = 'dsvendas'
 		var CLIENT_SECRET = 'dsvendas123'
 
-		$http.post("http://localhost:8080/oauth/token", $httpParamSerializerJQLike($scope.user),
+		$http.post("http://localhost:8080/oauth/token", $httpParamSerializerJQLike(vm.user),
 			{
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
