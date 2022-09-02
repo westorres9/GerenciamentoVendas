@@ -80,6 +80,7 @@ public class SaleService {
 			entity.setVisited(dto.getVisited());
 			entity.setDeals(dto.getDeals());
 			entity.setAmount(dto.getAmount());
+			entity.setTeam(user.getTeam());
 			entity.setSeller(user);
 			entity = repository.save(entity);
 			return new SaleDTO(entity);

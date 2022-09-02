@@ -38,23 +38,23 @@
                             title="Clique para Selecionar Equipe">Selecionar</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" onclick="alert('Tem certeza que deseja apagar')" ng-click="DeleteTeam(team)">Apagar</button>
+                            <button class="btn btn-danger" onclick="alert('Tem certeza que deseja apagar')" ng-click="TCVm.DeleteTeam(TCVm.team)">Apagar</button>
                         </td>
                    </tr>     
                 </tbody>
             </table>
             <tr>
-                <td><input type="text" required ng-model="team.id" placeholder="Cod da equipe"></td>
-                <td><input type="text" required ng-model="team.name" placeholder="Nome da equipe"></td>
-                <td><input type="text" required ng-model="team.managerId" placeholder="Id Lider Equipe"></td>
+                <td><input type="text" required ng-model="TCVm.team.id" placeholder="Cod da equipe"></td>
+                <td><input type="text" required ng-model="TCVm.team.name" placeholder="Nome da equipe"></td>
+                <td><input type="text" required ng-model="TCVm.team.managerId" placeholder="Id Lider Equipe"></td>
                 <td>
-                    <button href="#" class="btn btn-primary" ng-click="InsertTeam(team)"
-                        ng-disable="!team.id || !team.name || !team.managerId" data-toogle="tooltip"
+                    <button href="#" class="btn btn-primary" ng-click="TCVm.InsertTeam(TCVm.team)"
+                        ng-disable="!TCVm.team.id || !TCVm.team.name || !TCVm.team.managerId" data-toogle="tooltip"
                         title="Clique para Inserir Equipe">Novo</button>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-success" ng-click="UpdateTeam(team)"
-                        ng-disable="!team.id || !team.name || !team.sellerId" data-toogle="tooltip"
+                    <a href="#" class="btn btn-success" ng-click="TCVm.UpdateTeam(TCVm.team)"
+                        ng-disable="!team.id || !TCVm.team.name || !TCVm.team.sellerId" data-toogle="tooltip"
                         title="Clique para Editar Equipe">Alterar</a>
                 </td>
             </tr>

@@ -28,25 +28,25 @@
                             {{user.email}}
                         </td>
                         <td>
-                            <button class="btn btn-warning"  ng-click="SelectUser(user)"  data-toogle="tooltip"
+                            <button class="btn btn-warning"  ng-click="UVm.SelectUser(user)"  data-toogle="tooltip"
                             title="Clique para Selecionar Usuario">Selecionar</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" onclick="alert('Tem certeza que deseja apagar')">Apagar</button>
+                            <button class="btn btn-danger" onclick="alert('Tem certeza que deseja apagar')" ng-click="UVm.DeleteUser(UVm.user)">Apagar</button>
                         </td>
                    </tr>     
                 </tbody>
                 <tr>
-                    <td><input type="text" required ng-model="user.id" placeholder="Id do usuario"></td>
-                    <td><input type="text" required ng-model="user.name" placeholder="Nome do usuario"></td>
-                    <td><input type="text" required ng-model="user.email" placeholder="Email do usuario"></td>
+                    <td><input type="text" required ng-model="UVm.user.id" placeholder="Id do usuario"></td>
+                    <td><input type="text" required ng-model="UVm.user.name" placeholder="Nome do usuario"></td>
+                    <td><input type="text" required ng-model="UVm.user.email" placeholder="Email do usuario"></td>
                     <td>
-                        <button href="#" class="btn btn-primary" ng-click="InsertUser(user)"
+                        <button href="#" class="btn btn-primary" ng-click="UVm.InsertUser(UVm.user)"
                             ng-disable="!user.id || !user.name || !user.email" data-toogle="tooltip"
                             title="Clique para Inserir Usuario">Novo</button>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-success" ng-click="UpdateUser(user)"
+                        <a href="#" class="btn btn-success" ng-click="UVm.UpdateUser(UVm.user)"
                             ng-disable="!user.id || !user.name || !user.email" data-toogle="tooltip"
                             title="Clique para Editar Usuario">Alterar</a>
                     </td>
